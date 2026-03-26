@@ -1,0 +1,43 @@
+# Web framework
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+
+# Database
+sqlalchemy==2.0.35
+alembic==1.13.3
+psycopg2-binary==2.9.9
+
+# Auth
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.12
+
+# Validation & settings
+pydantic==2.9.2
+pydantic-settings==2.5.2
+email-validator==2.2.0
+
+# HTTP client (for price checking)
+httpx==0.27.2
+
+# Redis (caching, sessions)
+redis==5.1.0
+
+# AWS SDK
+boto3==1.35.31
+
+# AI / analytics
+openai==1.51.0
+pandas==2.2.3
+scikit-learn==1.5.2
+
+# Background tasks
+celery==5.4.0
+
+# Testing
+pytest==8.3.3
+pytest-asyncio==0.24.0
+httpx==0.27.2
+
+# Linting
+ruff==0.6.9

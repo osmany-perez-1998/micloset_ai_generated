@@ -30,3 +30,14 @@ export async function getOrder(id: string): Promise<Order> {
   const res = await api.get(`/orders/${id}`);
   return res.data;
 }
+
+export interface PaymentInput {
+  payment_type: "deposit" | "full_prepay";
+  amount_usd: number;
+  payment_method: "cash" | "wire_transfer";
+}
+
+export async function recordPayment(orderId: string, data: PaymentInput): Promise<Order> {
+  const res = await api.post(`/orders/${orderId}/payment`, data);
+  return res.data;
+}

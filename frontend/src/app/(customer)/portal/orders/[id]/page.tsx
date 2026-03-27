@@ -7,7 +7,7 @@ import { es } from "date-fns/locale";
 import RouteGuard from "@/components/layout/RouteGuard";
 import StatusBadge from "@/components/orders/StatusBadge";
 import { getOrder } from "@/lib/api/orders";
-import { Order, ORDER_STATUS_LABELS } from "@/types";
+import { Order } from "@/types";
 
 const SHIPPING_LABELS: Record<string, string> = {
   express_air: "Aéreo Express",
@@ -49,14 +49,24 @@ export default function OrderDetailPage({ params }: { params: { id: string } }) 
           {order && (
             <>
               {/* Header card */}
-              <div className="card flex items-start justify-between gap-4">
-                <div>
-                  <h2 className="font-brielle text-2xl text-brand-violet">{order.order_number}</h2>
-                  <p className="text-sm text-gray-400 mt-0.5">
-                    {format(new Date(order.created_at), "d 'de' MMMM yyyy", { locale: es })}
-                  </p>
+              <div className="card space-y-3">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h2 className="font-brielle text-2xl text-brand-violet">{order.order_number}</h2>
+                    <p className="text-sm text-gray-400 mt-0.5">
+                      {format(new Date(order.created_at), "d 'de' MMMM yyyy", { locale: es })}
+                    </p>
+                  </div>
+                  <StatusBadge status={order.status} />
                 </div>
-                <StatusBadge status={order.status} />
+                {order.status === "estimate_provided" && (
+                  <Link
+                    href={`/portal/orders/${params.id}/pay`}
+                    className="btn-primary block text-center w-full"
+                  >
+                    Ver estimado y confirmar pago
+                  </Link>
+                )}
               </div>
 
               {/* Products */}

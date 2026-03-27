@@ -45,6 +45,8 @@ export default function StaffOrderDetail({ params }: { params: { id: string } })
   }
 
   const isAssignedToMe = order?.sales_rep?.id === user?.id;
+  const canEstimate =
+    order?.status === "links_submitted" || order?.status === "price_changed";
 
   return (
     <RouteGuard allowedRoles={["sales_rep", "admin"]}>
@@ -96,6 +98,14 @@ export default function StaffOrderDetail({ params }: { params: { id: string } })
                     >
                       {assigning ? "Asignando..." : "Asignarme este pedido"}
                     </button>
+                  )}
+                  {canEstimate && (
+                    <Link
+                      href={`/dashboard/orders/${params.id}/estimate`}
+                      className="btn-primary text-sm py-1.5 text-center"
+                    >
+                      Crear estimado
+                    </Link>
                   )}
                 </div>
               </div>

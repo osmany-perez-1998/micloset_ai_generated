@@ -76,6 +76,17 @@ export interface Order {
   updated_at: string;
 }
 
+export interface OrderSummary {
+  id: string;
+  order_number: string;
+  status: OrderStatus;
+  item_count: number;
+  total_estimate_usd?: number;
+  total_final_usd?: number;
+  shipping_method?: ShippingMethod;
+  created_at: string;
+}
+
 // ─── Status display helpers ───────────────────────────────────────────────────
 
 export const ORDER_STATUS_LABELS: Record<OrderStatus, string> = {

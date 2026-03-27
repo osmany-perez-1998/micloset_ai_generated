@@ -23,6 +23,7 @@ def health_check():
     return {"status": "ok", "environment": settings.ENVIRONMENT}
 
 
-from app.routers import auth
+from app.routers import auth, orders
 
 app.include_router(auth.router, prefix=settings.API_V1_PREFIX)
+app.include_router(orders.router, prefix=settings.API_V1_PREFIX)
